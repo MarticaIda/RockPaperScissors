@@ -1,19 +1,16 @@
-const computerSelection = computerPlay()
-const playerSelection = prompt("Make your selection")
+let playerScore = 0
+let computerScore = 0
 
-function computerPlay() {
-    let hand = ["rock", "paper", "scissors"]
-    let random = Math.floor(Math.random() * hand.length)
-    return hand[random]
-}
+function playRound() {
+    const computerSelection = computerPlay()
+    const playerSelection = prompt("Make your selection").toLowerCase()
 
-function toLowerCase(text) {
-    const lowerCased = text.toLowerCase
-    return lowerCased
-}
-toLowerCase(playerSelection)
 
-function singleRound() {
+    function computerPlay() {
+        let hand = ["rock", "paper", "scissors"]
+        let random = Math.floor(Math.random() * hand.length)
+        return hand[random]
+    }
     if (playerSelection === "rock" && computerSelection === "scissors") {
         return ("You win! Rock beats scissors")
     }
@@ -36,11 +33,12 @@ function singleRound() {
         return ("Draw!")
     }
 }
-//Call the playRound function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end.
-//Remember loops? This is a great opportunity to use one to play those five rounds:
+
 function game() {
-    for (let i=0; i > 5; i++) {
-       console.log(singleRound(i))
+    console.log("game starts")
+    for (let i = 1; i <= 5; i++) {
+        console.log('i: ' + i.toString())
+        console.log(playRound())
     }
 }
 
