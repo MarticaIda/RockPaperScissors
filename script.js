@@ -1,17 +1,36 @@
 let playerScore = 0
 let computerScore = 0
+let playerPrompt
 
 
 function playRound() {
     const computerSelection = computerPlay()
-
-    const playerSelection = prompt("Make your selection").toLowerCase()
+    let playerSelection = promptForSelection()
 
     function computerPlay() {
         let hand = ["rock", "paper", "scissors"]
         let random = Math.floor(Math.random() * hand.length)
         return hand[random]
     }
+
+    function promptForSelection() {
+        validChoices = ['rock', 'paper', 'scissors']
+        playerPrompt = prompt("Make your selection")
+        if (playerPrompt != null) {
+            playerPrompt = playerPrompt.toLowerCase()
+        }
+        else {
+            alert('Game aborted')
+            throw new Error('Game aborted'); 
+        }
+
+        while (validChoices.indexOf(playerPrompt) == -1) { 
+            alert('Not a valid choice. Pick again')
+            playerPrompt = promptForSelection()
+        }
+        return playerPrompt
+    }
+
     if (playerSelection === "rock" && computerSelection === "scissors") {
         playerScore++
         return ("You win! Rock beats scissors")
@@ -36,7 +55,7 @@ function playRound() {
         playerScore++
         return ("You win! Paper beats rock")
     }
-    else {
+    else if (playerSelection === computerSelection) {
         return ("Draw!")
     }
 }
@@ -49,7 +68,7 @@ function game() {
     if (playerScore > computerScore) {
         console.log("You won!")
     }
-    else if (playerScore===computerScore){
+    else if (playerScore === computerScore) {
         console.log("It's a draw!")
     }
     else {
