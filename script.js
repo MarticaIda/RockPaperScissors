@@ -53,7 +53,7 @@ function playRound () {
   }
 }
 
-function game () {
+function playGame () {
   console.log('game starts')
   for (let i = 1; i <= 5; i++) {
     console.log(playRound())
@@ -66,4 +66,4 @@ function game () {
   }
 }
 
-game()
+playGame()
