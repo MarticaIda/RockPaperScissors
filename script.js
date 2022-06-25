@@ -53,17 +53,17 @@ function playRound () {
   }
 }
 
-function playGame () {
-  console.log('game starts')
-  for (let i = 1; i <= 5; i++) {
-    console.log(playRound())
-  } if (playerScore > computerScore) {
-    console.log('You won!')
-  } else if (playerScore === computerScore) {
-    console.log("It's a draw!")
-  } else {
-    console.log('You lost!')
-  }
-}
+// function playGame () {
+//   console.log('game starts')
+//   for (let i = 1; i <= 5; i++) {
+//     console.log(playRound())
+//   } if (playerScore > computerScore) {
+//     console.log('You won!')
+//   } else if (playerScore === computerScore) {
+//     console.log("It's a draw!")
+//   } else {
+//     console.log('You lost!')
+//   }
+// }
 
 playGame()
