@@ -1,22 +1,30 @@
 <html>
 
 <head>
-    <script src="script.js" defer></script>
+  
 </head>
 
 <body>
-    <div class="game-box">
-        <div class="rule-box">
-            <div>Rock Paper Scissors Game</div>
-            <p>Make your selection</p>
-        </div>
-        <div class="buttons">
-            <button id="buttonRock" type="button">Rock</button>
-            <button id="buttonPaper" type="button">Paper</button>
-            <button id="buttonScissors" type="button">Scissors</button>
-            <div id="results"></div>
-        </div>
+  <div id="game-box">
+    <div id="rule-box">
+      <h3>Rock Paper Scissors Game</h3>
+      <p id="invitation"></p>
     </div>
+    <div class="buttons">
+      <button id="rock" value="rock">Rock</button>
+      <button id="paper" value="paper">Paper</button>
+      <button id="scissors" value="scissors">Scissors</button>
+    </div>
+    <p>
+    <!-- <button id="clicker" value="">click here to see results</button> -->
+    <div id="result" value="">result</div>
+    <div id="call">Call</div>
+    </p>
+   <!-- <hidden id="userChoice" value=""></hidden> -->
+    <hidden id="userScore" value=""></hidden>
+    <hidden id="computerScore" value=""></hidden>
+  </div>
+  <script src="script.js" defer></script>
 </body>
 
 </html>
