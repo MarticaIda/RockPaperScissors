@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: azure;
+}
+
+#game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header {
+
+}
+
+h3 {
+    color: rgb(226, 98, 43);
+}
+
+#buttons {
+
+}
+
+#result {
+
+}
+
+#call {
+
+}
+
+#playAgain {
+
+}
+
+#signature {
+    display: flex;
+    flex-direction: column-reverse;
+}
