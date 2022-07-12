@@ -1,61 +1,87 @@
-let userScore = 0;
+// now need to make sure game fully stops after winning 5 and offer to play again
+let playerScore = 0;
 let computerScore = 0;
-
-const buttons = document.querySelectorAll('button');
-
-buttons.forEach((button) => {
-  button.addEventListener('click', playGame);
-});
+let computerSelection;
+let playerSelection;
+const playAgain = document.getElementById('playAgain');
+const btnTryAgain = document.createElement('button');
 
 function playGame () {
-  const userChoice = buttons.forEach((button) => {
-    button.addEventListener('click', function (e) {
-      const tempUserChoice = e.target.textContent;
-      return tempUserChoice;
+  playAgain.textContent = '';
+  playerScore = 0;
+  computerScore = 0;
+  // create player selection
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const val = button.value;
+      playerSelection = val;
+      // to be able to use playerSelection variable outside of this function need to pass it as argument to the target function
+      playRound(playerSelection, computerSelection);
     });
   });
 
-  const computerChoice = computerSelection();
-  function computerSelection () {
-    const hand = ['rock', 'paper', 'scissors'];
-    const random = Math.floor(Math.random() * hand.length);
-    return hand[random];
-  };
-  console.log(computerChoice);
-  console.log(userChoice);
-
-  function playRound () {
-    console.log(computerChoice);
-    if (userChoice === 'rock' && computerChoice === 'scissors') {
-      userScore++;
+  function playRound (playerSelection, computerSelection) {
+  // create randomized computer selection
+    computerSelection = computerPlay();
+    function computerPlay () {
+      const hand = ['rock', 'paper', 'scissors'];
+      const random = Math.floor(Math.random() * hand.length);
+      return hand[random];
+    };
+    console.log(playerSelection);
+    console.log(computerSelection);
+    if (playerSelection === 'rock' && computerSelection === 'scissors') {
+      playerScore++;
       document.getElementById('call').innerText = 'You win! Rock beats scissors';
-    } else if (userChoice === 'scissors' && computerChoice === 'rock') {
+      document.getElementById('result').innerText = `Player: ${playerScore} ` + `Computer: ${computerScore}`;
+    } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
       computerScore++;
       document.getElementById('call').innerText = 'You lose! Rock beats scissors';
-    } else if (userChoice === 'paper' && computerChoice === 'scissors') {
+      document.getElementById('result').innerText = `Player: ${playerScore} ` + `Computer: ${computerScore}`;
+    } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
       computerScore++;
       document.getElementById('call').innerText = 'You lose! Scissors beat paper';
-    } else if (userChoice === 'scissors' && computerChoice === 'paper') {
-      userScore++;
+      document.getElementById('result').innerText = `Player: ${playerScore} ` + `Computer: ${computerScore}`;
+    } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+      playerScore++;
       document.getElementById('call').innerText = 'You win! Scissors beats paper';
-    } else if (userChoice === 'rock' && computerChoice === 'paper') {
+      document.getElementById('result').innerText = `Player: ${playerScore} ` + `Computer: ${computerScore}`;
+    } else if (playerSelection === 'rock' && computerSelection === 'paper') {
       computerScore++;
       document.getElementById('call').innerText = 'You lose! Paper beats rock';
-    } else if (userChoice === 'paper' && computerChoice === 'rock') {
-      userScore++;
+      document.getElementById('result').innerText = `Player: ${playerScore} ` + `Computer: ${computerScore}`;
+    } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+      playerScore++;
       document.getElementById('call').innerText = 'You win! Paper beats rock';
-    } else if (userChoice === computerChoice) {
+      document.getElementById('result').innerText = `Player: ${playerScore} ` + `Computer: ${computerScore}`;
+    } else if (playerSelection === computerSelection) {
       document.getElementById('call').innerText = 'It\'s a draw!';
+      document.getElementById('result').innerText = `Player: ${playerScore} ` + `Computer: ${computerScore}`;
+    };
+    // ensure that the game runs till score of 5
+    if (playerScore === 5 || computerScore === 5) {
+      score();
+    } else if (playerScore > 5 || computerScore > 5) {
+      playerScore = 0;
+      computerScore = 0;
+      btnTryAgain.textContent = 'Wanna play again?';
+      playAgain.appendChild(btnTryAgain);
+      btnTryAgain.addEventListener('click', playGame);
     };
   };
 
-  // document.getElementById('invitation').innerText = 'Make Your Choice';
-  for (let i = 1; i <= (userScore === 5 || computerScore === 5); i++) {
-    document.getElementById('invitation').innerText = 'One More';
-    playRound(userChoice, computerChoice);
-  } if (userScore > computerScore) {
-    document.getElementById('result').innerText = `You won! Player Score: ${userScore} - Computer Score: ${computerScore}`;
-  } else {
-    document.getElementById('result').innerText = `You lost! Player Score: ${userScore} - Computer Score: ${computerScore}`;
+  // function that tallies the score
+  function score () {
+    playRound(playerSelection, computerSelection);
+    if (playerScore > computerScore) {
+      document.getElementById('result').innerText = `Player Score: ${playerScore} - Computer Score: ${computerScore}`;
+      document.getElementById('call').innerText = 'You won!';
+    } else {
+      document.getElementById('result').innerText = `Player Score: ${playerScore} - Computer Score: ${computerScore}`;
+      document.getElementById('call').innerText = 'You lost!';
+    };
   };
 };
+
+playGame();
